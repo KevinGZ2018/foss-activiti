@@ -1,0 +1,274 @@
+.placeholdersjs {
+	color: #ddd;
+}
+
+.align-right {
+	text-align: right;
+}
+
+/*for icon panel*/
+.on-selection{
+	background-color: #d6ebff;
+}
+
+.ivu-menu-item-selected{
+	background-color: #EEE;
+}
+
+.h-menu-divided li:not(:first-child) {
+	border-left: 1px solid #e3e8ee;
+}
+
+.v-menu-divided .ivu-menu-submenu-title {
+	border-top: 0px solid #e3e8ee;
+}
+
+.v-menu-divided {
+	border-bottom: 1px solid #e3e8ee;
+}
+
+.ivu-menu, .ivu-menu-item {
+	font-size: 12px;
+}
+
+.ivu-menu-vertical .ivu-menu-item, .ivu-menu-vertical .ivu-menu-submenu-title
+	{
+	padding: 0;
+	line-height: 40px;
+}
+
+.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item {
+	padding-left: 35px;
+}
+
+.ivu-menu-submenu-title .ivu-icon {
+	width: 20px;
+	text-align: right;
+	top: 15px;
+}
+
+.ivu-menu-horizontal .ivu-menu-item, .ivu-menu-horizontal .ivu-menu-submenu
+	{
+	padding: 0 10px;
+}
+
+.ivu-modal-body .ivu-table table {
+	width: 100%
+}
+
+.ivu-table-cell {
+	padding-left: 9px;
+	padding-right: 9px;
+}
+
+.layout-search .ivu-form-item-content, .layout-search .ivu-date-picker {
+	line-height: 25px;
+}
+
+.layout-search .ivu-form-item {
+	margin-bottom: 4px;
+}
+
+.table-label .table-label-title {
+	padding-right: 5px;
+	word-break: keep-all;
+	white-space: nowrap;
+}
+
+.layout-list {
+	background: #FFF;
+	position: relative;
+	overflow: hidden;
+	border: 0px solid #d7dde4;
+}
+
+.layout-search {
+	padding-bottom: 5px;
+	border: 0px solid #d7dde4;
+	height: 35px\0;
+}
+
+.layout-actions {
+	padding-bottom: 5px;
+	border: 0px solid #d7dde4;
+	display: inline-block\0;
+	width: 100% \0;
+}
+
+.layout-actions .Action-Bar {
+	text-align: right;
+	display: inline-block\0;
+	width: 100% \0;
+}
+
+.layout-grid {
+	padding-bottom: 5px;
+	border: 0px solid #d7dde4;
+}
+
+.dynamic-form .ivu-form-item {
+	margin-bottom: 5px;
+}
+
+.dynamic-form .label-row label, .info-form label{
+	margin-right: 5px;
+}
+
+.dynamic-form .ivu-form-item-error-tip{
+	position: relative;
+}
+
+/*---------------------------LOGIN FORM----------------------------*/
+.login-form .layout {
+	border: 1px solid #d7dde4;
+	background: #f5f7f9;
+	position: relative;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.login-form .layout-logo {
+	width: 100px;
+	height: 30px;
+	background: #5b6270;
+	border-radius: 3px;
+	float: left;
+	position: relative;
+	top: 15px;
+	left: 20px;
+}
+
+.login-form .layout-header {
+	height: 60px;
+	background: #fff;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+
+.login-form .layout-copy {
+	text-align: center;
+	padding: 10px 0 5px;
+	color: #9ea7b4;
+}
+
+.login-form .layout-ceiling {
+	background: #464c5b;
+	padding: 10px 0;
+	overflow: hidden;
+}
+
+.login-form .layout-ceiling-main {
+	float: right;
+	margin-right: 15px;
+}
+
+.login-form .layout-ceiling-main a {
+	color: #9ba7b5;
+}
+
+.login-form .form-height {
+	height: 400px;
+}
+
+.login-form .v-middle {
+	top: 100px\0; /**fuck ie9**/
+}
+/*---------------------------LOGIN FORM END----------------------------*/
+/*---------------------------HOME PAGE----------------------------*/
+.home-page .layout {
+	border: 1px solid #d7dde4;
+	background: #f5f7f9;
+	margin: 1px;
+}
+
+.home-page .layout-logo {
+	width: 170px;
+	height: 33px;
+	background: #5b6270;
+	float: left;
+	position: relative;
+	left: 1px;
+	top: 0px;
+	padding: 0;
+	margin: 0;
+	background: url("logo.png") no-repeat center 1px;
+	background-size: 100% 100%;
+	display: inline-block;
+}
+
+.home-page .layout-nav {
+	width: 420px;
+	margin: 0 auto;
+}
+
+.home-page .layout-assistant {
+	margin: 0 auto;
+	height: inherit;
+}
+
+.home-page .layout-breadcrumb {
+	padding: 10px 15px 0;
+}
+
+.home-page .layout-content {
+	min-height: 200px;
+	margin: 0px;
+	overflow: hidden;
+	background: #fff;
+	border-radius: 4px;
+}
+
+.layout-content-main {
+	padding: 10px;
+}
+
+.home-page .layout-copy-pos {
+	position: absolute;
+	bottom: 5px;
+	width: 99%;
+}
+
+.home-page .layout-copy-pos {
+	bottom: 20px\0; /**fuck ie9**/
+}
+
+.home-page .layout-copy {
+	text-align: center;
+	padding: 0;
+	color: #9ea7b4;
+	height: 20px;
+}
+
+.home-page .layout-ceiling {
+	background: #464c5b;
+	padding: 0 0 1px 0;
+	overflow: hidden;
+}
+
+.home-page .layout-ceiling-main {
+	float: right;
+	margin-right: 15px;
+}
+
+.home-page .layout-ceiling-main a {
+	color: #9ba7b5;
+}
+
+.home-page .layout-main-menu .ivu-menu-horizontal {
+	height: 40px;
+	line-height: 40px;
+}
+
+.home-page .show-today {
+	text-align: right;
+	line-height: 38px;
+	padding-left: 20px;
+}
+.search-btn-col-min-width {
+	min-width: 60px;
+}
+
+.home-page .tree-height {
+	height: 300px;
+	overflow: auto;
+}
+/*---------------------------LOGIN FORM END----------------------------*/

@@ -1,0 +1,53 @@
+<div>
+    <template>
+        <div>
+            <Menu mode="horizontal" active-key="1">
+                <Menu-item name="1">
+                    <router-link to="/index">
+                        <Icon type="ios-paper"></Icon>
+                        首页
+                    </router-link>
+                </Menu-item>
+
+                <Submenu name="2">
+                    <template slot="title">
+                        <Icon type="stats-bars"></Icon>
+                        流程管理
+                    </template>
+                    <Menu-group title="静态演示">
+                        <Menu-item name="2-1">
+                            <router-link to="/model_list">
+                                模型管理
+                            </router-link>
+                        </Menu-item>
+                        <Menu-item name="2-2">
+                            <router-link to="/process_list">
+                                流程定义及部署管理
+                            </router-link>
+                        </Menu-item>
+                    </Menu-group>
+                </Submenu>
+
+                <Submenu name="3">
+                    <template slot="title">
+                        <Icon type="stats-bars"></Icon>
+                        流程实例管理
+                    </template>
+                    <Menu-group title="静态演示">
+                        <Menu-item name="3-1">
+                            <router-link to="/model_list">
+                                运行中的流程
+                            </router-link>
+                        </Menu-item>
+                        <Menu-item name="3-2">
+                            <router-link to="/process_list">
+                                已结束的流程
+                            </router-link>
+                        </Menu-item>
+                    </Menu-group>
+                </Submenu>
+
+            </Menu>
+        </div>
+    </template>
+</div>

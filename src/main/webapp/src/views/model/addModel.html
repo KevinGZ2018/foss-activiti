@@ -1,0 +1,26 @@
+<div>
+    <template>
+        <div>
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="12" offset="3">
+                    <Form ref="formValidate" :model="model" :rules="ruleValidate" :label-width="160">
+                        <Form-item>
+                            <Button type="primary" icon="checkmark" @click="add('formValidate')">保存</Button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <Button type="ghost" icon="arrow-return-left" @click="goback">返回</Button>
+                        </Form-item>
+
+                        <Form-item label="名称" prop="name">
+                            <Input v-model="model.name" placeholder="请输入" style="width: 300px"></Input>
+                        </Form-item>
+
+                        <Form-item label="KEY" prop="key">
+                            <Input v-model="model.key" placeholder="请输入" style="width: 300px"></Input>
+                        </Form-item>
+                    </Form>
+                </Col>
+            </Row>
+        </div>
+    </template>
+</div>

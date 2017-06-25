@@ -1,0 +1,33 @@
+<div>
+    <template>
+        <div>
+            <br>
+            <Row type="flex" justify="space-around" align="middle">
+                <Col span="22">
+                    <Button type="ghost" icon="android-add" @click="add">添加</Button>&nbsp;&nbsp;
+                    <Button type="ghost" icon="edit" @click="edit">修改</Button>&nbsp;&nbsp;
+                    <Button type="ghost" icon="information" @click="view">查看</Button>&nbsp;&nbsp;
+                    <Button type="ghost" icon="android-remove" @click="remove">删除</Button>&nbsp;&nbsp;
+                    <Button type="ghost" icon="refresh" @click="initListData">刷新</Button>&nbsp;&nbsp;
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="22">
+                   <Table :columns="columns" :data="rows" @on-selection-change="changeSelectedRow"></Table>
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="space-around" align="middle">
+                <Col span="22">
+                    <Page :total="totalCount" :page-size="pageSize" :current="currentPage"
+                          @on-change="changePage" @on-page-size-change="changePageSize" show-sizer show-total></Page>
+                </Col>
+            </Row>
+
+            <remove-component v-on:refresh="initListData" ref="removechild"></remove-component>
+        </div>
+    </template>
+</div>

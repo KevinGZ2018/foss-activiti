@@ -1,0 +1,38 @@
+<div>
+    <template>
+        <div>
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="15" offset="3">
+                    <Form ref="form-validate" :model="model" :rules="ruleValidate" :label-width="160">
+                        <Form-item>
+                            <Button type="primary" icon="checkmark" @click="update('formValidate')">保存</Button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <Button type="ghost" icon="arrow-return-left" @click="goback">返回</Button>
+                        </Form-item>
+
+                        <Form-item label="名称">
+                            {{model.name}}
+                        </Form-item>
+
+                        <Form-item label="显示字段" prop="selectBody">
+                            <Input v-model="model.selectBody" placeholder="请输入"  type="textarea" :rows="5" style="width: 500px"></Input>
+                        </Form-item>
+
+                        <Form-item label="数据表" prop="fromBody">
+                            <Input v-model="model.fromBody" placeholder="请输入"  type="textarea" :rows="3" style="width: 500px;"></Input>
+                        </Form-item>
+
+                        <Form-item label="查询条件" prop="whereBody">
+                            <Input v-model="model.whereBody" placeholder="请输入" type="textarea" :rows="6" style="width: 500px"></Input>
+                        </Form-item>
+
+                        <Form-item label="描述">
+                            <Input v-model="model.description" placeholder="请输入" style="width: 500px"></Input>
+                        </Form-item>
+                    </Form>
+                </Col>
+            </Row>
+        </div>
+    </template>
+</div>

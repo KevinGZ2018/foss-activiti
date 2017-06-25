@@ -1,0 +1,7 @@
+<div>
+    <template>
+        <Tabs type="card" closable @on-tab-remove="handleTabRemove">
+            <Tab-pane v-for='tab in tabs' :label="tab.label" v-if="tab.show">{{ tab.body }}</Tab-pane>
+        </Tabs>
+    </template>
+</div>

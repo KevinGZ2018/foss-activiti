@@ -1,0 +1,66 @@
+<div>
+<template>
+    <div>
+        <step-state-component :current-state="currentState"></step-state-component>
+
+        <br>
+        <Row type="flex" justify="center" align="middle">
+            <Col span="14" offset="4">
+
+                <Collapse v-model="panelActiveKey" style="width: 650px" @on-change="changePanel">
+                    <Panel name="1">
+                        {{ panelName }}
+                        <p slot="content">
+                            <Transfer
+                                    :data="readyTables"
+                                    :target-keys="selectedTables"
+                                    :list-style="listStyle"
+                                    :render-format="render"
+                                    :operations="['向左移动','向右移动']"
+                                    filterable
+                                    @on-change="handleChange">
+                            </Transfer>
+                        </p>
+                    </Panel>
+                </Collapse>
+
+                <br>
+                <Form ref="formValidate" :model="model">
+                    <Form-item v-for="(item, index) in model.tables" :key="item.index">
+                        <Form-item style="float: left">
+                            <Select v-model="item.type" style="width: 150px">
+                                <Option value="PRIMARY">主表</Option>
+                                <Option value="LEFT JOIN">LEFT JOIN</Option>
+                                <Option value="RIGHT JOIN">RIGHT JOIN</Option>
+                                <Option value="RIGHT JOIN">INNER JOIN</Option>
+                                <Option value="JOIN">JOIN</Option>
+                            </Select>
+                            &nbsp;
+                            {{ item.name }}
+                        </Form-item>
+
+                        <Form-item :prop="'tables.' + index + '.alias'"
+                            :rules="{required: true, message: '别名不能为空', trigger: 'blur'}" style="float: left;margin-left: 10px">
+                            <Input v-model="item.alias" style="width: 120px"></Input>
+                        </Form-item>
+
+                        <Form-item style="float: left; margin-left: 10px">
+                            <Button type="ghost" size="small" @click="copy(item)">复制</Button>&nbsp;
+                            <Button type="ghost" size="small" @click="remove(item)">删除</Button>&nbsp;
+                        </Form-item>
+                    </Form-item>
+                </Form>
+
+            </Col>
+        </Row>
+
+        <br>
+        <Row type="flex" justify="center" align="middle">
+            <i-col span="20" offset="2">
+                <Button type="primary" @click="previous">上一步</Button>
+                &nbsp;&nbsp;
+                <Button type="primary" @click="next('formValidate')">下一步</Button>
+            </i-col>
+        </Row>
+    </div>
+</template>

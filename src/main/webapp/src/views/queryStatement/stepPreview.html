@@ -1,0 +1,15 @@
+<div>
+    <template>
+        <Modal v-model="localShowModal" title="SQL模板预览" :closable="false">
+            <div style="text-align:center">
+                <p> SELECT {{ saveModel.selectBody }}
+                    FROM {{ saveModel.fromBody }}
+                    WHERE {{ saveModel.whereBody }}
+                </p>
+            </div>
+            <p slot="footer">
+                <Button type="ghost" @click="cancel">返回</Button>&nbsp;&nbsp;
+            </p>
+        </Modal>
+    </template>
+</div>

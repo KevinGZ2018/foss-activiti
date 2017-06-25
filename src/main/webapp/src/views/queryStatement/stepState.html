@@ -1,0 +1,17 @@
+<div>
+    <template>
+        <div>
+            <br>
+            <Row type="flex" justify="space-around" align="middle">
+                <Col span="20" offset="2">
+                    <Steps :current="currentState">
+                        <Step title="数据源" content="请选择一个数据库连接">></Step>
+                        <Step title="数据表" content="可选择多张数据表，并配置表别名"></Step>
+                        <Step title="模板" content="创建SQL模板"></Step>
+                        <Step title="完成"></Step>
+                    </Steps>
+                </Col>
+            </Row>
+        </div>
+    </template>
+</div>

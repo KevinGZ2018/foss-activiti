@@ -1,0 +1,31 @@
+<div>
+    <template>
+        <div>
+            <step-state-component :current-state="currentState"></step-state-component>
+
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="20" offset="2">
+                   <i-table highlight-row :columns="columns" :data="rows" @on-current-change="changeSelectedRow"></i-table>
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="space-around" align="middle">
+                <Col span="20" offset="2">
+                    <Page :total="totalCount" :page-size="pageSize" :current="currentPage"
+                          @on-change="changePage" @on-page-size-change="changePageSize" show-sizer show-total></Page>
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="20" offset="2">
+                    <Button type="primary" @click="previous">返回</Button>
+                    &nbsp;&nbsp;
+                    <Button type="primary" @click="next">下一步</Button>
+                </Col>
+            </Row>
+        </div>
+    </template>
+</div>

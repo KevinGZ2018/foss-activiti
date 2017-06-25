@@ -1,0 +1,36 @@
+<div>
+    <template>
+        <div>
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="21">
+                    <Button type="ghost" icon="refresh" @click="previewListQueryView">预览</Button>&nbsp;&nbsp;
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="10">
+                    <Table highlight-row :columns="dataSourceColumns" :data="dataSourceRows" @on-current-change="changeDataSourceSelectedRow"></Table>
+                </Col>
+                <Col span="10" offset="1">
+                    <Table highlight-row :columns="queryStatementColumns" :data="queryStatementRows" @on-current-change="changeQueryStatementSelectedRow"></Table>
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="10">
+                    <Page :total="dataSourceTotalCount" :page-size="dataSourcePageSize" :current="dataSourceCurrentPage"
+                          @on-change="changeDataSourcePage" @on-page-size-change="changeDataSourcePageSize" show-sizer show-total></Page>
+                </Col>
+                <Col span="10" offset="1">
+                    <Page :total="queryStatementTotalCount" :page-size="queryStatementPageSize" :current="queryStatementCurrentPage"
+                          @on-change="changeQueryStatementPage" @on-page-size-change="changeQueryStatementPageSize" show-sizer show-total></Page>
+                </Col>
+            </Row>
+
+            <list-query-view-modal-component ref="listqueryviewchild"></list-query-view-modal-component>
+        </div>
+    </template>
+</div>

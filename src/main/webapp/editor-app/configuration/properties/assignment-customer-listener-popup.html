@@ -1,0 +1,52 @@
+<div class="modal" ng-controller="KisBpmAssignmentCustomerListenerPopupCtrl" ng-init="initializeController()">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2 translate>内置监听器列表</h2>
+            </div>
+            <div class="modal-body">
+
+            	<div class="row">
+
+                    <div class="span8">
+                        <fieldset>
+<!--                            <legend><small>内置监听器列表</small></legend>-->
+                            <table width="200px" class="table table-bordered table-hover table-condensed">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10%; white-space: nowrap;text-align:center"><input ng-show="false" type="checkbox" ng-model="master" ng-click="allCheck(master, content)"></th>
+                                    <th>名称</th>
+                                    <th>委托表达式</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="element in content">
+                                        <td style="width: 10%; white-space: nowrap;text-align:center">
+                                            <input type="checkbox" ng-model="checkStatus" ng-click="chk(element, checkStatus)">
+                                        </td>
+                                        <td>{{element.name}}</td>
+                                        <td class="prop-email">{{element.delegateExpression}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+
+<!--                        <fieldset>
+                            <legend><small>预选值</small></legend>
+                            <label ng-repeat="item in choseArr" style="float: left; margin-right: 20px;">{{ item.split("_")[0] }}
+                                <i class="glyphicon glyphicon-minus clickable-property" ng-click="remove(item)"></i>
+                            </label>
+                        </fieldset>-->
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button ng-click="close()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" class="btn btn-primary" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

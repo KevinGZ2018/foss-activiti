@@ -1,0 +1,157 @@
+<div>
+    <template>
+        <div>
+            <step-state-component :current-state="currentState"></step-state-component>
+
+            <br>
+            <Form ref="formValidate" :model="model" :rules="ruleValidate" :label-width="300">
+
+                <Form-item label="模板名称" prop="name">
+                    <Input v-model="model.name" placeholder="请输入" style="width: 300px"></Input>
+                </Form-item>
+
+                <Form-item label="模板描述">
+                    <Input v-model="model.description" placeholder="请输入" style="width: 300px"></Input>
+                </Form-item>
+
+                <Form-item label="数据表">
+                    {{ model.primaryTable.name }} &nbsp; {{ model.primaryTable.alias }}
+                </Form-item>
+
+                <Form-item label="关联表" v-show="model.joinTables.length > 0" v-for="(table, pIndex) in model.joinTables" :key="table.pIndex">
+                    <Form-item style="float: left">
+                        {{ table.type }} &nbsp; {{ table.name }} &nbsp; {{ table.alias }} &nbsp; ON
+                    </Form-item>
+
+                    <br>
+                    <Form-item v-for="(onCondition, index) in model.joinTables[pIndex].onConditions" :key="onCondition.index">
+                        <Form-item :prop="'joinTables.' + pIndex + '.onConditions.' + index + '.onColumn'"
+                                   :rules="{required: true, message: '不能为空', trigger: 'blur'}" style="float: left;">
+                            <Select v-model="onCondition.onColumn" filterable style="width: 150px">
+                                <Option v-for="(item, index) in table.columns" :key="item.index" :value="table.alias + '.' + item.name">{{ item.name }}</Option>
+                            </Select>
+                            &nbsp; =
+                        </Form-item>
+
+                        <Form-item :prop="'joinTables.' + pIndex + '.onConditions.' + index + '.refTable'"
+                                   :rules="{required: true, message: '不能为空', trigger: 'blur'}" style="float: left;margin-left: 10px">
+                            <Select v-model="onCondition.refTable" style="width: 150px" @on-change="loadRefColumns(pIndex, index)">
+                                <Option v-for="(t, index) in tables" :key="t.index" :value="t.alias">{{ t.alias }}</Option>
+                            </Select>
+                        </Form-item>
+
+                        <Form-item :prop="'joinTables.' + pIndex + '.onConditions.' + index + '.refColumn'"
+                                   :rules="{required: true, message: '不能为空', trigger: 'blur'}" style="float: left;margin-left: 10px">
+                            <Select v-model="onCondition.refColumn" style="width: 150px">
+                                <Option v-for="(c, index) in model.joinTables[pIndex].onConditions[index].refColumns" :key="c.index" :value="c.name">{{ c.name }}</Option>
+                            </Select>
+                        </Form-item>
+                        &nbsp;&nbsp;
+                        <Button v-show="index > 0" type="ghost" size="small" @click="remove(pIndex, onCondition)">删除级联条件</Button>&nbsp;
+                        <Button v-show="index == 0" type="ghost" size="small" @click="add(pIndex)">添加级联条件</Button>&nbsp;
+                        <br>
+                        <br>
+                    </Form-item>
+
+                </Form-item>
+
+                <Form-item label="显示字段">
+                    <Collapse v-model="selectBodyPanelActiveKey" style="width: 630px" @on-change="changeSelectBodyPanel">
+                        <Panel name="1">
+                            {{ selectBodyPanelName }}
+                            <p slot="content">
+                                <Transfer
+                                        :data="readySelectBodyColumns"
+                                        :target-keys="selectedSelectBodyColumns"
+                                        :list-style="listStyle"
+                                        :render-format="render"
+                                        :operations="['向左移动','向右移动']"
+                                        filterable
+                                        @on-change="handleSelectBodyChange">
+                                </Transfer>
+                            </p>
+                        </Panel>
+                    </Collapse>
+
+                    <br>
+                    <Form-item v-for="(item, index) in model.selectColumns" :key="item.index">
+                        <Form-item style="float: left">
+                            {{ item.name }}&nbsp;&nbsp;
+                        </Form-item>
+
+                        <Form-item :prop="'selectColumns.' + index + '.alias'"
+                                   :rules="{required: true, message: '不能为空', trigger: 'blur'}" style="float: left">
+                            <Input v-model="item.alias" style="width: 120px"></Input>
+                         </Form-item>
+                        <br>
+                        <br>
+                    </Form-item>
+                </Form-item>
+
+                <Form-item label="查询条件">
+                    <Collapse v-model="whereBodyPanelActiveKey" style="width: 630px" @on-change="changeWhereBodyPanel">
+                        <Panel name="1">
+                            {{ whereBodyPanelName }}
+                            <p slot="content">
+                                <Transfer
+                                        :data="readyWhereBodyColumns"
+                                        :target-keys="selectedWhereBodyColumns"
+                                        :list-style="listStyle"
+                                        :render-format="render"
+                                        :operations="['向左移动','向右移动']"
+                                        filterable
+                                        @on-change="handleWhereBodyChange">
+                                </Transfer>
+                            </p>
+                        </Panel>
+                    </Collapse>
+
+                    <br>
+                    <Form-item v-for="(whereCondition, index) in model.whereConditions" :key="whereCondition.index">
+                        <Form-item style="float: left">
+                            <Select v-model="whereCondition.andOr" style="width: 90px">
+                                <Option value="AND">AND</Option>
+                                <Option value="OR">OR</Option>
+                            </Select>
+
+                            &nbsp; {{ whereCondition.whereColumn }} &nbsp;
+
+                            <Select v-model="whereCondition.meta" style="width: 90px">
+                                <Option value="=">=</Option>
+                                <Option value="!=">!=</Option>
+                                <Option value="<="><=</Option>
+                                <Option value="<"><</Option>
+                                <Option value=">=">>=</Option>
+                                <Option value=">">></Option>
+                                <Option value="like">LIKE</Option>
+                                <Option value="in">IN</Option>
+                                <Option value="not in">NOT IN</Option>
+                            </Select>
+                        </Form-item>
+
+                        <Form-item :prop="'whereConditions.' + index + '.queryParam'"
+                                   :rules="{required: true, message: '不能为空', trigger: 'blur'}" style="float: left;;margin-left: 10px">
+                            <Input v-model="whereCondition.queryParam" style="width: 120px;"></Input>
+                        </Form-item>
+                        <br>
+                        <br>
+                    </Form-item>
+                </Form-item>
+
+                <br>
+                <Row type="flex" justify="center" align="middle">
+                    <Col span="20" offset="2">
+                        <Button type="primary" @click="previous">上一步</Button>
+                        &nbsp;&nbsp;
+                        <Button type="primary" @click="preview('formValidate')">预览</Button>
+                        &nbsp;&nbsp;
+                        <Button type="primary" @click="complete('formValidate')">完成</Button>
+                    </Col>
+                </Row>
+
+            </Form>
+
+            <step-preview-component ref="steppreviewchild"></step-preview-component>
+        </div>
+    </template>
+</div>

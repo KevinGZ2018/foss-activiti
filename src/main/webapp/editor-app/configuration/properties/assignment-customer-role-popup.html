@@ -1,0 +1,81 @@
+<div class="modal" ng-controller="KisBpmAssignmentCustomerRolePopupCtrl" ng-init="initializeController()">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                <h2 translate>用户列表</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label style="float: left; text-align:center; margin-top: 5px; margin-right: 10px;">名称</label>
+                        <input class="form-control" type="text" style="float: left; width: 150px; margin-right: 20px;" ng-model="model.name" />
+                        <label style="float: left; text-align:center; margin-top: 5px; margin-right: 10px;">角色描述</label>
+                        <input class="form-control" type="text" style="float: left; width: 150px; margin-right: 20px;" ng-model="model.description" />
+                        <button ng-click="search()" class="btn btn-primary" translate style="float: left">搜索</button>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="span8">
+                        <fieldset>
+                            <legend><small>角色列表</small></legend>
+                            <table width="200px" class="table table-bordered table-hover table-condensed">
+                                <thead>
+                                <tr>
+                                    <th style="width: 10%; white-space: nowrap;text-align:center"></th>
+                                    <th>名称</th>
+                                    <th>角色描述</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="element in content">
+                                    <td style="width: 10%; white-space: nowrap;text-align:center">
+                                        <input type="checkbox" ng-model="checkStatus" ng-click="chk(element, checkStatus)">
+                                    </td>
+                                    <td>
+                                        {{element.name}}
+                                    </td>
+                                    <td>{{element.description}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align: right; width: 50%">
+                                        共<span ng-bind="totalElements"></span>条记录,
+                                        当前显示第<span ng-bind="currentPageNum"></span>页,
+                                        共<span ng-bind="totalPages"></span>页
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align: right; width: 50%;">
+                                        <ul class="pagination" style="margin-top: 3px; margin-bottom: 3px;">
+                                            <li ng-class="{'disabled': currentPageNum === 1}"><a ng-click="pageChanged(currentPageNum - 1)">&laquo;</a></li>
+                                            <li ng-repeat="i in showPages" ng-class="{'active': i === currentPageNum}">
+                                                <a ng-click="pageChanged(i)">{{i}}</a>
+                                            </li>
+                                            <li ng-class="{'disabled': currentPageNum === totalPages}"><a ng-click="pageChanged(currentPageNum + 1)">&raquo;</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend><small>预选值</small></legend>
+                            <label ng-repeat="item in choseArr" style="float: left; margin-right: 20px;">{{ item.split("_")[2] }}
+                                <i class="glyphicon glyphicon-minus clickable-property" ng-click="remove(item)"></i>
+                            </label>
+                        </fieldset>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button ng-click="close()" class="btn btn-primary" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" class="btn btn-primary" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

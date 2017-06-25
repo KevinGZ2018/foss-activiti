@@ -1,0 +1,41 @@
+<div>
+    <template>
+        <div>
+            <br>
+            <Row type="flex" justify="space-around" align="middle">
+                <Col span="22">
+                    <div v-for="searchCondition in searchConditions">
+                        {{ searchCondition.name }}&nbsp;
+                        {{ searchCondition.meta }}&nbsp;
+                        <Input v-model="searchCondition.paramValue" style="width: 300px"></Input>
+                        <br>
+                        <br>
+                    </div>
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="space-around" align="middle">
+                <Col span="22">
+                    <Button type="ghost" icon="refresh" @click="search">搜索</Button>&nbsp;&nbsp;
+                    <Button type="ghost" icon="refresh" @click="refresh">刷新</Button>
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="22">
+                    <Table :columns="columns" :data="rows"></Table>
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="space-around" align="middle">
+                <Col span="22">
+                    <Page :total="totalCount" :page-size="conditions.pageSize" :current="conditions.currentPage" :page-size-opts="pageSizeOpts"
+                          @on-change="changePage" @on-page-size-change="changePageSize" show-sizer show-total></Page>
+                </Col>
+            </Row>
+        </div>
+    </template>
+</div>
