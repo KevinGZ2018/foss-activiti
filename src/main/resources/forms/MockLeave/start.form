@@ -1,0 +1,28 @@
+<Row type="flex" justify="center" align="middle">
+    <Col span="24" offset="2">
+    <Form :model="model" :label-width="160">
+        <Form-item label="请假类型" prop="leaveType">
+            <Select v-model="model.leaveType" style="width:80px">
+                <Option value="公休">公休</Option>
+                <Option value="病假">病假</Option>
+                <Option value="调休">调休</Option>
+                <Option value="事假">事假</Option>
+                <Option value="婚假">婚假</Option>
+            </Select>
+        </Form-item>
+
+        <Form-item label="开始时间" prop="startTime">
+            <Date-picker type="date" v-model="model.startTime" placeholder="选择日期" style="width: 200px"></Date-picker>
+        </Form-item>
+
+        <Form-item label="结束时间" prop="endTime">
+            <Date-picker type="date" v-model="model.endTime" placeholder="选择日期" style="width: 200px"></Date-picker>
+        </Form-item>
+
+        <Form-item label="请假原因" prop="reason">
+            <Input v-model="model.reason" placeholder="请输入" type="textarea" :rows="5" style="width: 300px;"></Input>
+        </Form-item>
+    </Form>
+    </Col>
+</Row>
+

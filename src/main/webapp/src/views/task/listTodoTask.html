@@ -1,0 +1,29 @@
+<div>
+    <template>
+        <div>
+            <br>
+            <Row type="flex" justify="space-around" align="middle">
+                <Col span="23">
+                    <Button type="ghost" icon="refresh" @click="initListData">刷新</Button>&nbsp;&nbsp;
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="center" align="middle">
+                <Col span="23">
+                   <Table border :columns="columns" :data="rows"></Table>
+                </Col>
+            </Row>
+
+            <br>
+            <Row type="flex" justify="space-around" align="middle">
+                <Col span="23">
+                    <Page :total="totalCount" :page-size="pageSize" :current="currentPage"
+                          @on-change="changePage" @on-page-size-change="changePageSize" show-sizer show-total></Page>
+                </Col>
+            </Row>
+
+            <task-form-modal-component :key="key" v-on:refresh="initListData" ref="taskformchild"></task-form-modal-component>
+        </div>
+    </template>
+</div>

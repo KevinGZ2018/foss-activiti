@@ -1,0 +1,14 @@
+<div>
+    <template>
+        <Modal v-model="localShowModal" title="发起流程" width="800"
+               :closable="false">
+
+            <div id="startFormContent"></div>
+
+            <p slot="footer">
+                <Button type="ghost" @click="cancel">返回</Button>&nbsp;&nbsp;
+                <Button type="primary" @click="start">发起流程</Button>&nbsp;&nbsp;
+            </p>
+        </Modal>
+    </template>
+</div>
