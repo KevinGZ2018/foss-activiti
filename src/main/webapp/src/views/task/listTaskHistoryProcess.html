@@ -11,7 +11,7 @@
             <br>
             <Row type="flex" justify="center" align="middle">
                 <Col span="23">
-                   <Table border :columns="columns" :data="rows" @on-selection-change="changeSelectedRow"></Table>
+                   <Table border :columns="columns" :data="rows"></Table>
                 </Col>
             </Row>
 
@@ -23,7 +23,7 @@
                 </Col>
             </Row>
 
-            <remove-component v-on:refresh="refreshCurrentPageData" ref="removechild"></remove-component>
+            <history-task-form-modal-component :key="key" ref="historytaskformchild"></history-task-form-modal-component>
         </div>
     </template>
 </div>

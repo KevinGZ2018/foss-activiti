@@ -1,4 +1,4 @@
-define([ 'vue', 'html!views/process/listProcess.html', 'globalConst', 'apis/processService', 'remove', 'startProcessModal' ],
+define([ 'vue', 'html!views/process/listProcess.html', 'globalConst', 'apis/processService', 'remove' ],
     function(Vue, html, globalConst, processService) {
 
     const MODULE = globalConst.PROCESS
@@ -123,20 +123,6 @@ define([ 'vue', 'html!views/process/listProcess.html', 'globalConst', 'apis/proc
                                         }
                                     }
                                 }, params.row.suspended ? '激活' : '挂起'),
-                                h('Button', {
-                                    props: {
-                                        type: 'primary',
-                                        size: 'small'
-                                    },
-                                    style: {
-                                        marginRight: '5px'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.startProcess(params.row.id)
-                                        }
-                                    }
-                                }, '启动'),
                                 h('Button', {
                                     props: {
                                         type: 'success',

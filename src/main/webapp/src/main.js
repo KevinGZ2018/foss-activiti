@@ -40,7 +40,9 @@ var requireConfig = {
         app: "app",
         tab: "tab",
         remove: "remove",
-        startProcessModal: 'views/process/startProcessModal'
+        startFormModal: 'views/task/startFormModal',
+        taskFormModal: 'views/task/taskFormModal',
+        historyTaskFormModal: 'views/task/historyTaskFormModal'
     },
     shim : {
         vue : {

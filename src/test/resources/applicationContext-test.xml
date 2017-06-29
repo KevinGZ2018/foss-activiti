@@ -13,7 +13,7 @@
 	<description>Spring公共配置</description>
 
 	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-	<context:component-scan base-package="me.kafeitu.demo.activiti">
+	<context:component-scan base-package="com.foss">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
@@ -21,7 +21,7 @@
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
-		<property name="packagesToScan" value="me.kafeitu.demo.activiti.entity"/>
+		<property name="packagesToScan" value="com.foss.entity"/>
 		<property name="jpaProperties">
 			<props>
 <!--				<prop key="hibernate.dialect">${hibernate.dialect}</prop>-->
@@ -37,7 +37,7 @@
 	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
 	<!-- Spring Data Jpa配置 -->
-	<jpa:repositories base-package="me.kafeitu.demo.activiti" transaction-manager-ref="transactionManager"
+	<jpa:repositories base-package="com.foss" transaction-manager-ref="transactionManager"
 		entity-manager-factory-ref="entityManagerFactory" />
 
 	<!-- Jpa 事务配置 -->
@@ -59,7 +59,7 @@
 		<!-- 自定义表单字段类型 -->
 		<property name="customFormTypes">
 			<list>
-				<bean class="me.kafeitu.demo.activiti.activiti.form.UsersFormType" />
+				<bean class="com.foss.activiti.form.UsersFormType" />
 			</list>
 		</property>
 	</bean>
@@ -84,7 +84,7 @@
           			  classpath*:/application.local.properties" />
 
 		<!-- 数据源配置, 使用DBCP数据库连接池 -->
-		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 			<!-- Connection Info -->
 			<property name="driverClassName" value="${jdbc.driver}" />
 			<property name="url" value="${jdbc.url}" />
@@ -109,14 +109,14 @@
           			  classpath:/application.test.local.properties" />
 
 		<!-- 嵌入式内存中数据库 -->
-		<jdbc:embedded-database id="dataSource" type="H2">
+		<jdbc:embedded-database type="H2">
 			<jdbc:script location="classpath:org/activiti/db/create/activiti.h2.create.engine.sql" />
 			<jdbc:script location="classpath:org/activiti/db/create/activiti.h2.create.history.sql" />
 			<jdbc:script location="classpath:org/activiti/db/create/activiti.h2.create.identity.sql" />
 		</jdbc:embedded-database>
 
 		<!-- 初始化默认数据 -->
-		<bean class="me.kafeitu.modules.test.data.DataInitializer" lazy-init="false">
+		<bean class="com.foss.modules.test.data.DataInitializer" lazy-init="false">
 			<property name="dataSource" ref="dataSource" />
 			<property name="dataFile" value="/data/sample-data.xml" />
 		</bean>

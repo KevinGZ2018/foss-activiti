@@ -5,5 +5,5 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-    <jaxws:endpoint id="leaveWebService" implementor="me.kafeitu.demo.activiti.webservice.LeaveWebServiceImpl" address="/leave"/>
+    <jaxws:endpoint id="leaveWebService" implementor="com.foss.webservice.LeaveWebServiceImpl" address="/leave"/>
 </beans>

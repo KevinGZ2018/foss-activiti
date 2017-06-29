@@ -1,7 +1,6 @@
-define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'globalConst', 'apis/processService', 'remove' ],
-    function(Vue, html, globalConst, processService) {
+define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'globalConst', 'apis/processInstanceService' ],
+    function(Vue, html, globalConst, processInstanceService) {
 
-    const MODULE = globalConst.PROCESS
     const PAGE = globalConst.PAGE
 
     return {
@@ -15,85 +14,33 @@ define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'g
                         align: 'center'
                     },*/
                     {
-                        title: '流程定义ID',
+                        title: '流程实例ID',
                         key: 'id',
                         width: 100,
                         align: 'center'
                     },
                     {
-                        title: '流程部署ID',
-                        key: 'deploymentId',
-                        width: 80,
+                        title: '流程定义ID',
+                        key: 'processDefinitionId',
                         align: 'center'
                     },
                     {
-                        title: '名称',
-                        key: 'name',
-                        align: 'center'
-                    },
-                    {
-                        title: 'KEY',
-                        key: 'key',
-                        align: 'center'
-                    },
-                    {
-                        title: '版本',
-                        key: 'version',
-                        width: 55,
-                        align: 'center'
-                    },
-                    {
-                        title: 'XML',
-                        key: 'resourceName',
+                        title: '当前节点',
+                        key: 'currentTaskName',
                         align: 'center',
                         render: (h, params) => {
                             return h('div', [
-                                h('Button', {
+                                h('a', {
                                     props: {
                                         type: 'text',
                                         size: 'small'
                                     },
                                     on: {
                                         click: () => {
-                                            this.showResourceFile(params.row.id, 'xml')
+                                            this.showDiagramViewer(params.row.processDefinitionId, params.row.id)
                                         }
                                     }
-                                }, params.row.resourceName)
-                            ]);
-                        }
-                    },
-                    {
-                        title: '图片',
-                        key: 'diagramResourceName',
-                        align: 'center',
-                        render: (h, params) => {
-                            return h('div', [
-                                h('Button', {
-                                    props: {
-                                        type: 'text',
-                                        size: 'small'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.showResourceFile(params.row.id, 'image')
-                                        }
-                                    }
-                                }, params.row.diagramResourceName)
-                            ]);
-                        }
-                    },
-                    {
-                        title: '部署时间',
-                        key: 'deploymentTime',
-                        align: 'center',
-                        render: (h, params) => {
-                            return h('div', [
-                                h('Button', {
-                                    props: {
-                                        type: 'text',
-                                        size: 'small'
-                                    }
-                                }, Vue.filter('localDateString')(params.row.deploymentTime))
+                                }, params.row.currentTaskName)
                             ]);
                         }
                     },
@@ -122,32 +69,7 @@ define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'g
                                             }
                                         }
                                     }
-                                }, params.row.suspended ? '激活' : '挂起'),
-                                h('Button', {
-                                    props: {
-                                        type: 'success',
-                                        size: 'small'
-                                    },
-                                    style: {
-                                        marginRight: '5px'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.convertToModel(params.row.id)
-                                        }
-                                    }
-                                }, '转成模型'),
-                                h('Button', {
-                                    props: {
-                                        type: 'error',
-                                        size: 'small'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.remove(params.row.deploymentId)
-                                        }
-                                    }
-                                }, '删除')
+                                }, params.row.suspended ? '激活' : '挂起')
                             ]);
                         }
                     }
@@ -163,14 +85,11 @@ define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'g
             this.initListData()
         },
         methods: {
-            showResourceFile (id, type) {
-                processService.showResourceFile(id, type)
-            },
-            remove (deploymentId) {
-                this.$refs.removechild.remove(MODULE.URL.REMOVE + "?deploymentId=" + deploymentId)
+            showDiagramViewer (processDefinitionId, processInstanceId) {
+                processInstanceService.showDiagramViewer(processDefinitionId, processInstanceId)
             },
             active (id) {
-                processService.activeProcess(id).then((response) => {
+                processInstanceService.activeProcessInstance(id).then((response) => {
 
                     this.$Message.info(response.data)
                     this.refreshCurrentPageData()
@@ -180,25 +99,10 @@ define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'g
                 })
             },
             suspend (id) {
-                processService.suspendProcess(id).then((response) => {
+                processInstanceService.suspendProcessInstance(id).then((response) => {
 
                     this.$Message.info(response.data)
                     this.refreshCurrentPageData()
-
-                }).catch((error) => {
-                    console.log(error)
-                })
-            },
-            convertToModel (id) {
-                processService.convertToModel(id).then((response) => {
-
-                    if(response.data === 'success') {
-                        this.$Message.info('操作成功!')
-                        this.refreshCurrentPageData()
-                    }
-                    else {
-                        this.$Message.error('操作失败!')
-                    }
 
                 }).catch((error) => {
                     console.log(error)
@@ -226,7 +130,7 @@ define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'g
             },
             getDataPage () {
 
-                processService.findProcesses(this.currentPage, this.pageSize).then((response) => {
+                processInstanceService.findRunningProcessInstances(this.currentPage, this.pageSize).then((response) => {
 
                     var resultData = response.data
                     this.$set(this.$data, 'rows', resultData.result)

@@ -2,22 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>me.kafeitu.demo</groupId>
+    <groupId>com.foss</groupId>
     <artifactId>foss-activiti</artifactId>
     <version>1.15.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Activiti demo</name>
     <description>activiti demo for version 5.17+</description>
-
-    <developers>
-        <developer>
-            <id>henryyan</id>
-            <name>Henry Yan</name>
-            <email>yanhonglei@gmail.com</email>
-            <url>http://www.kafeitu.me</url>
-            <timezone>8</timezone>
-        </developer>
-    </developers>
 
     <!-- 项目属性 -->
     <properties>
@@ -474,6 +464,12 @@
             <version>1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.10.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -622,7 +618,7 @@
 
                 <!-- driver configs -->
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/learning_activiti?useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
+                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/foss-activiti?useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password>root</jdbc.password>
                 <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>

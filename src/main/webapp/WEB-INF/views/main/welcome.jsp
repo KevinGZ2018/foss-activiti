@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@page import="me.kafeitu.demo.activiti.util.PropertyFileUtil"%>
+<%@page import="com.foss.util.PropertyFileUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">

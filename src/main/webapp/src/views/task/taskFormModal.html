@@ -1,0 +1,13 @@
+<div>
+    <template>
+        <Modal v-model="localShowModal" title="办理流程" width="800" :closable="false">
+
+            <div id="taskFormContent"></div>
+
+            <p slot="footer">
+                <Button type="ghost" @click="cancel">返回</Button>&nbsp;&nbsp;
+                <Button type="primary" @click="handle">办理</Button>&nbsp;&nbsp;
+            </p>
+        </Modal>
+    </template>
+</div>

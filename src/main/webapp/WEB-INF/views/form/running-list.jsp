@@ -1,4 +1,4 @@
-<%@page import="me.kafeitu.demo.activiti.util.ProcessDefinitionCache,org.activiti.engine.RepositoryService"%>
+<%@page import="com.foss.util.ProcessDefinitionCache,org.activiti.engine.RepositoryService"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -1,0 +1,46 @@
+<div>
+    <template>
+        <Modal v-model="localShowModal" title="流程办理记录" width="800">
+
+            <Row type="flex" justify="center" align="middle">
+                <Col span="24">
+                <Form :label-width="160">
+
+                    <div style="background:#eee;padding: 20px 20px 10px 20px">
+                        <Card :bordered="false">
+                            <p>
+                                <Form-item :label="startFormBo.label" v-for="startFormBo in startFormBos">
+                                    {{ startFormBo.value }}
+                                </Form-item>
+                            </p>
+                        </Card>
+                    </div>
+
+                    <div style="background:#eee;padding: 10px 20px 10px 20px" v-for="taskBo in taskBos">
+                        <Card :bordered="false">
+                            <p>
+                                <Form-item label="审批人">
+                                    {{ taskBo.approveUserName }}
+                                </Form-item>
+                                <Form-item label="审批时间">
+                                    {{ taskBo.startTime }} - {{ taskBo.endTime }}
+                                </Form-item>
+                                <Form-item label="是否审批通过">
+                                    {{ taskBo.auditText }}
+                                </Form-item>
+                                <Form-item label="审批意见">
+                                    {{ taskBo.auditDesc }}
+                                </Form-item>
+                            </p>
+                        </Card>
+                    </div>
+                </Form>
+                </Col>
+            </Row>
+
+            <p slot="footer">
+                <Button type="ghost" @click="cancel">返回</Button>&nbsp;&nbsp;
+            </p>
+        </Modal>
+    </template>
+</div>

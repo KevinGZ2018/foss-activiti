@@ -20,6 +20,28 @@ define([], function() {
             component: (resolve) => require(['views/process/listProcess'], resolve)
         },
         {
+            path: '/processinstance_running_list',
+            component: (resolve) => require(['views/processInstance/listRunningProcessInstance'], resolve)
+        },
+        {
+            path: '/processinstance_finished_list',
+            component: (resolve) => require(['views/processInstance/listFinishedProcessInstance'], resolve)
+        },
+        {
+            path: '/task_process_list/:currentUser',
+            component: (resolve) => require(['views/task/listTaskProcess'], resolve)
+        },
+        {
+            path: '/task_history_process_list/:currentUser',
+            component: (resolve) => require(['views/task/listTaskHistoryProcess'], resolve)
+        },
+        {
+            path: '/todo_task_list/:currentUser/:currentGroup',
+            component: (resolve) => require(['views/task/listTodoTask'], resolve)
+        },
+
+
+        {
             path: '/data_source_view/:id',
             component: (resolve) => require(['views/dataSource/viewDataSource'], resolve)
         },

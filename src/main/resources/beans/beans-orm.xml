@@ -27,7 +27,7 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
-        <property name="packagesToScan" value="me.kafeitu.demo.activiti.entity"/>
+        <property name="packagesToScan" value="com.foss.entity"/>
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
@@ -40,7 +40,7 @@
     <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 
     <!-- Spring Data Jpa配置 -->
-    <jpa:repositories base-package="me.kafeitu.demo.activiti" transaction-manager-ref="transactionManager"
+    <jpa:repositories base-package="com.foss" transaction-manager-ref="transactionManager"
                       entity-manager-factory-ref="entityManagerFactory"/>
 
     <!-- Jpa 事务配置 -->
@@ -48,7 +48,7 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <jpa:repositories base-package="me.**.dao"
+    <jpa:repositories base-package="com.**.dao"
                       repository-impl-postfix="Impl"
                       entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="transactionManager">

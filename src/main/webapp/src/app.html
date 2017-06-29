@@ -14,18 +14,16 @@
                         <Icon type="stats-bars"></Icon>
                         流程管理
                     </template>
-                    <Menu-group title="静态演示">
-                        <Menu-item name="2-1">
-                            <router-link to="/model_list">
-                                模型管理
-                            </router-link>
-                        </Menu-item>
-                        <Menu-item name="2-2">
-                            <router-link to="/process_list">
-                                流程定义及部署管理
-                            </router-link>
-                        </Menu-item>
-                    </Menu-group>
+                    <Menu-item name="2-1">
+                        <router-link to="/model_list">
+                            模型管理
+                        </router-link>
+                    </Menu-item>
+                    <Menu-item name="2-2">
+                        <router-link to="/process_list">
+                            流程定义及部署管理
+                        </router-link>
+                    </Menu-item>
                 </Submenu>
 
                 <Submenu name="3">
@@ -33,20 +31,77 @@
                         <Icon type="stats-bars"></Icon>
                         流程实例管理
                     </template>
-                    <Menu-group title="静态演示">
-                        <Menu-item name="3-1">
-                            <router-link to="/model_list">
-                                运行中的流程
+                    <Menu-item name="3-1">
+                        <router-link to="/processinstance_running_list">
+                            运行中的流程
+                        </router-link>
+                    </Menu-item>
+                    <Menu-item name="3-2">
+                        <router-link to="/processinstance_finished_list">
+                            已结束的流程
+                        </router-link>
+                    </Menu-item>
+                </Submenu>
+
+                <Submenu name="4">
+                    <template slot="title">
+                        <Icon type="stats-bars"></Icon>
+                        流程操作模拟
+                    </template>
+                    <Menu-group title="流程发起">
+                        <Menu-item name="4-1">
+                            <router-link to="/task_process_list/u_1_张三">
+                                【张三】可发起的流程列表
                             </router-link>
                         </Menu-item>
-                        <Menu-item name="3-2">
-                            <router-link to="/process_list">
-                                已结束的流程
+                    </Menu-group>
+
+                    <Menu-group title="流程办理">
+<!--                        <Menu-item name="4-2">
+                            <router-link to="/todo_task_list/u_1_张三/1">
+                                【张三(职员)】待办任务列表
+                            </router-link>
+                        </Menu-item>-->
+                        <Menu-item name="4-3">
+                            <router-link to="/todo_task_list/u_2_李四/2">
+                                【李四(主管)】待办任务列表
+                            </router-link>
+                        </Menu-item>
+<!--                        <Menu-item name="4-4">
+                            <router-link to="/todo_task_list/u_3_王五">
+                                【王五(主管)】待办任务列表
+                            </router-link>
+                        </Menu-item>-->
+                        <Menu-item name="4-5">
+                            <router-link to="/todo_task_list/u_4_马六/3">
+                                【马六(总监)】待办任务列表
+                            </router-link>
+                        </Menu-item>
+<!--                        <Menu-item name="4-6">
+                            <router-link to="/todo_task_list/u_5_赵七">
+                                【赵七(总监)】待办任务列表
+                            </router-link>
+                        </Menu-item>-->
+                        <Menu-item name="4-7">
+                            <router-link to="/todo_task_list/u_6_丁八/r_4_经理_Manager">
+                                【丁八(经理)】待办任务列表
+                            </router-link>
+                        </Menu-item>
+                    </Menu-group>
+
+                    <Menu-group title="历史流程">
+                        <Menu-item name="4-8">
+                            <router-link to="/task_history_process_list/u_1_张三">
+                                【张三】历史流程列表
+                            </router-link>
+                        </Menu-item>
+                        <Menu-item name="4-9">
+                            <router-link to="/task_history_process_list/u_2_李四">
+                                【李四(主管)】历史流程列表
                             </router-link>
                         </Menu-item>
                     </Menu-group>
                 </Submenu>
-
             </Menu>
         </div>
     </template>

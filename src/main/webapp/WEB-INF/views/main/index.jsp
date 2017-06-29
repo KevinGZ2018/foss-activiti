@@ -1,4 +1,4 @@
-<%@page import="me.kafeitu.demo.activiti.util.PropertyFileUtil"%>
+<%@page import="com.foss.util.PropertyFileUtil"%>
 <%@page import="org.springframework.beans.factory.config.PropertiesFactoryBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
