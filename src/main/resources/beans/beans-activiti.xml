@@ -25,7 +25,7 @@
 
         <!--<property name="configurators">
             <list>
-                <bean class="me.kafeitu.demo.activiti.activiti.DbInitConfigurator" />
+                <bean class="com.foss.activiti.DbInitConfigurator" />
             </list>
         </property>-->
 
@@ -45,7 +45,7 @@
 
         <!-- 缓存支持
         <property name="processDefinitionCache">
-            <bean class="me.kafeitu.demo.activiti.util.cache.DistributedCache" />
+            <bean class="com.foss.util.cache.DistributedCache" />
         </property>-->
 
         <!-- 自动部署 -->

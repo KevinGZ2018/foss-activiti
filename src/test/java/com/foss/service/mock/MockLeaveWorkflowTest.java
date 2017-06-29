@@ -1,8 +1,8 @@
 package com.foss.service.mock;
 
 import com.foss.entity.oa.Leave;
-import com.foss.service.oa.leave.LeaveManager;
 import com.foss.modules.test.spring.SpringTransactionalTestCase;
+import com.foss.service.oa.leave.LeaveManager;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -251,11 +251,10 @@ public class MockLeaveWorkflowTest extends SpringTransactionalTestCase {
         List<Task> list = taskService.createTaskQuery().taskCandidateOrAssigned(user).list();
         for(Task task : list) {
             String taskId = task.getId();
-            String pass_key = taskId.concat("_passed");
-            String desc_key = taskId.concat("_desc");
-            taskService.setVariable(taskId, pass_key, isAudit);
-            taskService.setVariable(taskId, desc_key, auditDesc);
-
+            String _isAudit = taskId.concat("_isAudit");
+            String _auditDesc = taskId.concat("_auditDesc");
+            taskService.setVariable(taskId, _isAudit, isAudit);
+            taskService.setVariable(taskId, _auditDesc, auditDesc);
             taskService.complete(task.getId());
         }
     }
@@ -266,16 +265,15 @@ public class MockLeaveWorkflowTest extends SpringTransactionalTestCase {
         List<Task> list = taskService.createTaskQuery().taskCandidateGroup(group).list();
         for(Task task : list) {
             String taskId = task.getId();
-            String pass_key = taskId.concat("_passed");
-            String desc_key = taskId.concat("_desc");
-            taskService.setVariable(taskId, pass_key, isAudit);
-            taskService.setVariable(taskId, desc_key, auditDesc);
+            String _isAudit = taskId.concat("_isAudit");
+            String _auditDesc = taskId.concat("_auditDesc");
+            taskService.setVariable(taskId, _isAudit, isAudit);
+            taskService.setVariable(taskId, _auditDesc, auditDesc);
 
             // 任务认领，将公有任务转成私有任务
             taskService.claim(taskId, claimUser);
 
             taskService.complete(task.getId());
         }
-
     }
 }

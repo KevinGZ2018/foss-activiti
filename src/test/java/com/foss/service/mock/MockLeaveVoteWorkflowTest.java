@@ -153,10 +153,10 @@ public class MockLeaveVoteWorkflowTest extends SpringTransactionalTestCase {
         Task task = taskService.createTaskQuery().taskCandidateOrAssigned(user).singleResult();
         String taskId = task.getId();
 
-        String pass_key = taskId.concat("_passed");
-        String desc_key = taskId.concat("_desc");
-        taskService.setVariable(taskId, pass_key, isAudit);
-        taskService.setVariable(taskId, desc_key, auditDesc);
+        String _isAudit = taskId.concat("_isAudit");
+        String _auditDesc = taskId.concat("_auditDesc");
+        taskService.setVariable(taskId, _isAudit, isAudit);
+        taskService.setVariable(taskId, _auditDesc, auditDesc);
 
         setVariable(task.getProcessInstanceId(), isAudit, auditDesc);
 
