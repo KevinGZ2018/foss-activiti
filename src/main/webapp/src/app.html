@@ -88,16 +88,46 @@
                             </router-link>
                         </Menu-item>
                     </Menu-group>
+                </Submenu>
 
-                    <Menu-group title="历史流程">
-                        <Menu-item name="4-8">
-                            <router-link to="/task_history_process_list/u_1_张三">
-                                【张三】历史流程列表
+                <Submenu name="5">
+                    <template slot="title">
+                        <Icon type="stats-bars"></Icon>
+                        流程操作记录查看模拟
+                    </template>
+
+                    <Menu-group title="查看运行中的流程">
+                        <Menu-item name="5-1">
+                            <router-link to="/task_running_process_list/u_1_张三">
+                                【张三】查看运行中的流程
                             </router-link>
                         </Menu-item>
-                        <Menu-item name="4-9">
+                        <Menu-item name="5-2">
+                            <router-link to="/task_running_process_list/u_2_李四">
+                                【李四(主管)】查看运行中的流程
+                            </router-link>
+                        </Menu-item>
+                        <Menu-item name="5-3">
+                            <router-link to="/task_running_process_list/u_3_王五">
+                                【王五(主管)】查看运行中的流程
+                            </router-link>
+                        </Menu-item>
+                    </Menu-group>
+
+                    <Menu-group title="查看已结束的流程">
+                        <Menu-item name="5-4">
+                            <router-link to="/task_history_process_list/u_1_张三">
+                                【张三】查看已结束的流程
+                            </router-link>
+                        </Menu-item>
+                        <Menu-item name="5-5">
                             <router-link to="/task_history_process_list/u_2_李四">
-                                【李四(主管)】历史流程列表
+                                【李四(主管)】查看已结束的流程
+                            </router-link>
+                        </Menu-item>
+                        <Menu-item name="5-6">
+                            <router-link to="/task_history_process_list/u_3_王五">
+                                【王五(主管)】查看已结束的流程
                             </router-link>
                         </Menu-item>
                     </Menu-group>

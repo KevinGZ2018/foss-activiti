@@ -48,6 +48,7 @@ define([], function() {
             URL: {
                 TASK_PROCESS_LIST: '/workflow/task/process/list',
                 TASK_HISTORY_PROCESS_LIST: '/workflow/task/history-process/list',
+                TASK_RUNNING_PROCESS_LIST: '/workflow/task/running-process/list',
                 TODO_TASK_LIST: '/workflow/task/todo-task/list',
                 GET_START_FORM: '/workflow/task/get-form/start',
                 START_PROCESS_INSTANCE: '/workflow/task/start-processinstance',

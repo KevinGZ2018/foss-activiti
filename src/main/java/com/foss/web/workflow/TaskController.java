@@ -1,11 +1,11 @@
 package com.foss.web.workflow;
 
+import com.foss.entity.workflow.FormBo;
 import com.foss.entity.workflow.TaskBo;
 import com.foss.service.WorkflowService;
+import com.foss.util.Page;
 import com.foss.util.PageUtil;
 import jodd.util.StringUtil;
-import com.foss.entity.workflow.FormBo;
-import com.foss.util.Page;
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
@@ -52,6 +52,9 @@ public class TaskController {
 
     @Autowired
     WorkflowService workflowService;
+
+    @Autowired
+    RuntimeService runtimeService;
 
     @Autowired
     HistoryService historyService;
@@ -196,7 +199,7 @@ public class TaskController {
             formService.submitTaskFormData(taskId, formProperties);
 
             result.put("state", "success");
-            result.put("msg", "任务完成：taskId=" + taskId);
+            result.put("msg", "任务完成，任务ID：" + taskId);
         }
         catch (Exception e) {
             result.put("state", "error");
@@ -210,15 +213,54 @@ public class TaskController {
     }
 
     /**
+     * 运行中的流程实例
+     */
+    @RequestMapping(value = "/running-process/list/{currentPage}/{pageSize}")
+    public Object runningProcessList(@PathVariable Integer currentPage, @PathVariable Integer pageSize, HttpServletRequest request) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        Map<String, Object> map;
+
+        HistoricProcessInstanceQuery query = historyService
+                .createHistoricProcessInstanceQuery()
+                .involvedUser(getCurrentUser(request))
+                .orderByProcessInstanceStartTime()
+                .desc()
+                .unfinished();
+        List<HistoricProcessInstance> list = query.listPage(PageUtil.getFirstResult(currentPage, pageSize), pageSize);
+        for(HistoricProcessInstance historicProcessInstance: list) {
+
+            // 设置当前任务信息
+            List<Task> tasks = taskService.createTaskQuery().processInstanceId(historicProcessInstance.getId()).active().orderByTaskCreateTime().desc().listPage(0, 1);
+            String currentTaskName = tasks != null && tasks.size() > 0 ? tasks.get(0).getName() : "";
+
+            map = new HashMap<>();
+            map.put("id", historicProcessInstance.getId());
+            map.put("processDefinitionId", historicProcessInstance.getProcessDefinitionId());
+            map.put("currentTaskName", currentTaskName);
+            result.add(map);
+        }
+
+        Page<Map<String, Object>> page = new Page<>();
+        page.setResult(result);
+        page.setTotalCount(query.count());
+        return page;
+    }
+
+    /**
      * 已结束的流程实例
      */
     @RequestMapping(value = "/history-process/list/{currentPage}/{pageSize}")
-    public Object finishedProcessList(@PathVariable Integer currentPage, @PathVariable Integer pageSize) {
+    public Object finishedProcessList(@PathVariable Integer currentPage, @PathVariable Integer pageSize, HttpServletRequest request) {
 
         List<Map<String, Object>> result = new ArrayList<>();
         Map<String, Object> map;
 
-        HistoricProcessInstanceQuery query = historyService.createHistoricProcessInstanceQuery().orderByProcessInstanceEndTime().desc().finished();
+        HistoricProcessInstanceQuery query = historyService
+                .createHistoricProcessInstanceQuery()
+                .involvedUser(getCurrentUser(request))
+                .orderByProcessInstanceEndTime()
+                .desc()
+                .finished();
         List<HistoricProcessInstance> list = query.listPage(PageUtil.getFirstResult(currentPage, pageSize), pageSize);
         for(HistoricProcessInstance historicProcessInstance: list) {
 

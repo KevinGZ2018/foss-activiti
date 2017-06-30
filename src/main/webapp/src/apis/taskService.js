@@ -35,7 +35,14 @@ define([ 'vue', 'axios', 'globalConst' ], function(Vue, axios, globalConst) {
             return axios.post(globalConst.TASK.URL.CLAIM + "/" + taskId, data)
         },
         findTaskHistoryProcesses: function (data1, data2) {
-            return axios.get(globalConst.TASK.URL.TASK_HISTORY_PROCESS_LIST +  "/" + data1 + "/" + data2)
+            var currentUser = localStorage.getItem('currentUser');
+            var data = "currentUser=" + currentUser;
+            return axios.post(globalConst.TASK.URL.TASK_HISTORY_PROCESS_LIST +  "/" + data1 + "/" + data2, data)
         },
+        findTaskRunningProcesses: function (data1, data2) {
+            var currentUser = localStorage.getItem('currentUser');
+            var data = "currentUser=" + currentUser;
+            return axios.post(globalConst.TASK.URL.TASK_RUNNING_PROCESS_LIST +  "/" + data1 + "/" + data2, data)
+        }
     }
 })
