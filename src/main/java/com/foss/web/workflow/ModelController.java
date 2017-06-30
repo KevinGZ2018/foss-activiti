@@ -133,10 +133,10 @@ public class ModelController {
                     db.addString(modelData.getName() + ".bpmn20.xml",
                     new String(bpmnBytes)).deploy();
 
-            msg = "部署成功，部署ID=" + deployment.getId();
+            msg = "部署成功，部署ID：" + deployment.getId();
 
         } catch (Exception e) {
-            msg = "根据模型部署流程失败：modelId=" + id;
+            msg = "根据模型部署流程失败，模型ID：" + id;
             logger.error(msg, e);
         }
         return msg;
