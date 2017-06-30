@@ -8,11 +8,6 @@ define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'g
         data () {
             return {
                 columns: [
-/*                    {
-                        type: 'selection',
-                        width: 60,
-                        align: 'center'
-                    },*/
                     {
                         title: '流程实例ID',
                         key: 'id',
@@ -77,8 +72,7 @@ define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'g
                 rows: [],
                 currentPage: PAGE.INIT_CURRENT_PAGE,
                 pageSize: PAGE.INIT_PAGE_SIZE,
-                totalCount: 0,
-                selectedIds: []
+                totalCount: 0
             }
         },
         mounted () {
@@ -109,23 +103,19 @@ define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'g
                 })
             },
             initListData () {
-                this.selectedIds = []
                 this.currentPage = PAGE.INIT_CURRENT_PAGE
                 this.pageSize = PAGE.INIT_PAGE_SIZE
                 this.getDataPage()
             },
             changePage (current) {
-                this.selectedIds = []
                 this.currentPage = current
                 this.getDataPage()
             },
             changePageSize (pageSize) {
-                this.selectedIds = []
                 this.pageSize = pageSize
                 this.getDataPage()
             },
             refreshCurrentPageData () {
-                this.selectedIds = []
                 this.getDataPage()
             },
             getDataPage () {
@@ -139,19 +129,6 @@ define([ 'vue', 'html!views/processInstance/listRunningProcessInstance.html', 'g
                 }).catch((error) => {
                     console.log(error)
                 })
-            },
-            checkSelectedOnlyOne (selectedIds) {
-                if(selectedIds.length != 1) {
-                    this.$Message.info('请选择一条记录!')
-                    return false
-                }
-                return true
-            },
-            changeSelectedRow (selection) {
-                this.selectedIds = []
-                for(var i=0; i<selection.length; i++) {
-                    this.selectedIds.push(selection[i].id)
-                }
             }
         }
     }

@@ -54,9 +54,6 @@ public class TaskController {
     WorkflowService workflowService;
 
     @Autowired
-    RuntimeService runtimeService;
-
-    @Autowired
     HistoryService historyService;
 
     /**
@@ -317,7 +314,6 @@ public class TaskController {
         // 查看上游的审批记录
         List<TaskBo> taskBos = workflowService.getApproveHistory(task.getProcessInstanceId());
 
-
         result.put("taskForm", taskForm);
         result.put("taskBos", taskBos);
         result.put("startFormBos", startFormBos);
@@ -362,7 +358,6 @@ public class TaskController {
             System.out.println("field id: " + field.getPropertyId() + ", value: " + field.getPropertyValue());
         }*/
 
-
         result.put("taskBos", taskBos);
         result.put("startFormBos", startFormBos);
         return result;
@@ -396,5 +391,4 @@ public class TaskController {
         //User user = UserUtil.getUserFromSession(request.getSession());
         return request.getParameter("currentUser");
     }
-
 }

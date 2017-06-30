@@ -1,11 +1,8 @@
 define([], function() {
-
     const routes = [
         {
             path: '/index',
-            component : function(resolve) {
-                require([ "views/index" ], resolve)
-            }
+            component : function(resolve) { require([ "views/index" ], resolve) }
         },
         {
             path: '/model_list',
@@ -45,5 +42,4 @@ define([], function() {
         }
     ];
     return routes;
-
 })

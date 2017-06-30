@@ -1,7 +1,6 @@
 define([ 'vue', 'html!views/processInstance/listFinishedProcessInstance.html', 'globalConst', 'apis/processInstanceService' ],
     function(Vue, html, globalConst, processInstanceService) {
 
-    const MODULE = globalConst.PROCESS_INSTANCE
     const PAGE = globalConst.PAGE
 
     return {

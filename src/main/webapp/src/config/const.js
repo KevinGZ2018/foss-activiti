@@ -61,64 +61,6 @@ define([], function() {
                 TASK_PROCESS_LIST: '/task_process_list',
                 TODO_TASK_LIST: '/todo_task_list'
             }
-        },
-        TABLE: {
-            URL: {
-                LIST: 'http://localhost:8989/default/table_find_id',
-                GET: 'http://localhost:8989/default/table_get_id'
-            }
-        },
-        QUERY_STATEMENT: {
-            URL: {
-                LIST: 'http://localhost:8989/default/querystatement_page',
-                ADD: 'http://localhost:8989/default/querystatement_update',
-                UPDATE: 'http://localhost:8989/default/querystatement_update',
-                REMOVE: 'http://localhost:8989/default/querystatement_del_id',
-                GET: 'http://localhost:8989/default/querystatement_get_id'
-            },
-            ROUTER: {
-                LIST: '/query_statement_list',
-                ADD: '/query_statement_add',
-                EDIT: '/query_statement_edit',
-                VIEW: '/query_statement_view',
-                STEP_CONFIG_DATA_SOURCE: '/step_config_data_source',
-                STEP_CONFIG_TABLE: '/step_config_table',
-                STEP_CONFIG_QUERY_STATEMENT: '/step_config_query_statement'
-            }
-        },
-        QUERY_STATEMENT_CREATE_STORE: {
-            dataSourceId: '',
-            tables: [],
-            queryStatementModel: {
-                name: '',
-                description: '',
-                primaryTable: {},
-                joinTables: [],
-                selectColumns: [],
-                whereConditions: []
-            },
-            clear: function () {
-                this.dataSourceId = '',
-                    this.tables = [],
-                    this.queryStatementModel = {
-                        name: '',
-                        description: '',
-                        primaryTable: {},
-                        joinTables: [],
-                        selectColumns: [],
-                        whereConditions: []
-                    }
-            }
-        },
-        SEPARATOR: {
-            SPACE_SPLIT: ' ',
-            DOT_SPLIT: '.',
-            ON_SPLIT: ' ON ',
-            EQ_SPLIT: ' = ',
-            AND_SPLIT: ' AND ',
-            UNDERLINE_SPLIT: '_',
-            COLON_SPLIT: ':',
-            POUND_SIGN_SPLIT: '#'
         }
     }
 })
