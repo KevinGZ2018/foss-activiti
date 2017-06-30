@@ -1,0 +1,20 @@
+<Row type="flex" justify="center" align="middle">
+    <Col span="24" offset="2">
+    <Form :model="model" :label-width="160">
+
+        <Form-item label="会议室用途" prop="purpose">
+            <Input v-model="model.purpose" placeholder="请输入" type="textarea" :rows="5" style="width: 300px;"></Input>
+        </Form-item>
+
+        <Form-item label="开始时间" prop="startTime">
+            <Date-picker type="date" v-model="model.startTime" placeholder="选择日期" style="width: 200px"></Date-picker>
+        </Form-item>
+
+        <Form-item label="结束时间" prop="endTime">
+            <Date-picker type="date" v-model="model.endTime" placeholder="选择日期" style="width: 200px"></Date-picker>
+        </Form-item>
+
+    </Form>
+    </Col>
+</Row>
+
