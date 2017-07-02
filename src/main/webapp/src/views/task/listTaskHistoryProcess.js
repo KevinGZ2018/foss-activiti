@@ -113,6 +113,9 @@ define([ 'vue', 'html!views/task/listTaskHistoryProcess.html', 'globalConst', 'a
                 this.$refs.historytaskformchild.show(true, id)
             },
             initListData () {
+
+                localStorage.setItem('currentUser', this.$route.params.currentUser);
+
                 this.currentPage = PAGE.INIT_CURRENT_PAGE
                 this.pageSize = PAGE.INIT_PAGE_SIZE
                 this.getDataPage()

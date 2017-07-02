@@ -6,7 +6,7 @@
             <div style="background:#eee;padding: 20px 20px 10px 20px">
                 <Card :bordered="false">
                     <p>
-                        <Form-item :label="startFormBo.label" v-for="startFormBo in startFormBos">
+                        <Form-item :label="startFormBo.label" v-for="(startFormBo, index) in startFormBos" :key="index">
                             {{ startFormBo.value }}
                         </Form-item>
                     </p>
@@ -14,7 +14,7 @@
             </div>
 
             <!-- 已审批内容 -->
-            <div style="background:#eee;padding: 10px 20px 10px 20px" v-for="taskBo in taskBos">
+            <div style="background:#eee;padding: 10px 20px 10px 20px" v-for="(taskBo, index) in taskBos" :key="index">
                 <Card :bordered="false">
                     <p>
                         <Form-item label="审批人">

@@ -13,7 +13,6 @@ define([ 'vue', 'html!views/task/startFormModal.html', 'apis/taskService' ],
         methods: {
             getStartForm (processDefinitionId) {
                 taskService.getStartForm(processDefinitionId).then((response) => {
-
                     this.startFormModel = new Vue({
                         el: '#startFormContent',
                         template: '<div><template>' + response.data + '</template></div>',
@@ -47,6 +46,8 @@ define([ 'vue', 'html!views/task/startFormModal.html', 'apis/taskService' ],
                     }
                     params += key + "=" + value + "&"
                 }
+
+                alert(JSON.stringify(startFormModelContent));
 
                 taskService.startProcessInstance(this.processDefinitionId, params).then((response) => {
 

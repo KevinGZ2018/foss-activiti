@@ -18,7 +18,7 @@
             <br>
             <Row type="flex" justify="space-around" align="middle">
                 <Col span="23">
-                    <Page :total="totalCount" :page-size="pageSize" :current="currentPage"
+                    <Page :key="key" :total="totalCount" :page-size="pageSize" :current="currentPage"
                           @on-change="changePage" @on-page-size-change="changePageSize" show-sizer show-total></Page>
                 </Col>
             </Row>

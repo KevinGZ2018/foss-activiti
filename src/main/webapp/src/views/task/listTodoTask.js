@@ -170,6 +170,10 @@ define([ 'vue', 'html!views/task/listTodoTask.html', 'globalConst', 'apis/taskSe
                 })
             },
             initListData () {
+
+                localStorage.setItem('currentUser', this.$route.params.currentUser);
+                localStorage.setItem('currentGroup', this.$route.params.currentGroup);
+
                 this.currentPage = PAGE.INIT_CURRENT_PAGE
                 this.pageSize = PAGE.INIT_PAGE_SIZE
                 this.getDataPage()

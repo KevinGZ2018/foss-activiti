@@ -618,7 +618,7 @@
 
                 <!-- driver configs -->
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/learning_activiti?useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
+                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/learning_activiti?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&amp;useFastDateParsing=false]]></jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password>root</jdbc.password>
                 <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
@@ -645,7 +645,7 @@
 
                 <!-- driver configs -->
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-                <jdbc.url><![CDATA[jdbc:mysql://10.24.159.114:3306/db_activiti?useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
+                <jdbc.url><![CDATA[jdbc:mysql://10.24.159.114:3306/db_activiti?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&amp;useFastDateParsing=false]]></jdbc.url>
                 <jdbc.username>mysqldba</jdbc.username>
                 <jdbc.password>mysqldba</jdbc.password>
                 <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>

@@ -97,7 +97,10 @@ public class TaskController {
         Map<String, String[]> parameterMap = request.getParameterMap();
         Set<Map.Entry<String, String[]>> entrySet = parameterMap.entrySet();
         for (Map.Entry<String, String[]> entry : entrySet) {
-            formProperties.put(entry.getKey(), entry.getValue()[0]);
+            String key = entry.getKey();
+            String value = entry.getValue()[0];
+            System.out.println("%%%%%%%%%   key=" + key + "   value=" + value);
+            formProperties.put(key, value);
         }
 
         try {
@@ -305,7 +308,9 @@ public class TaskController {
                     .createHistoricVariableInstanceQuery()
                     .processInstanceId(task.getProcessInstanceId())
                     .variableName(formBo.getName()).singleResult();
-            formBo.setValue(historicVariableInstance.getValue());
+            if(historicVariableInstance != null) {
+                formBo.setValue(historicVariableInstance.getValue());
+            }
         }
 
         //获取流程变量
