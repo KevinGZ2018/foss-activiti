@@ -99,7 +99,6 @@ public class TaskController {
         for (Map.Entry<String, String[]> entry : entrySet) {
             String key = entry.getKey();
             String value = entry.getValue()[0];
-            System.out.println("%%%%%%%%%   key=" + key + "   value=" + value);
             formProperties.put(key, value);
         }
 
