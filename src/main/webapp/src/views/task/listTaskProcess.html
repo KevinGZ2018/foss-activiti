@@ -23,7 +23,7 @@
                 </Col>
             </Row>
 
-            <start-from-modal-component :key="key" ref="startformchild"></start-from-modal-component>
+            <start-from-modal-component :key="key" v-on:refresh="refreshCurrentPageData" ref="startformchild"></start-from-modal-component>
         </div>
     </template>
 </div>

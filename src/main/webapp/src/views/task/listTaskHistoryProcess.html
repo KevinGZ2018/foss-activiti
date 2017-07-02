@@ -23,7 +23,7 @@
                 </Col>
             </Row>
 
-            <history-task-form-modal-component :key="key" ref="historytaskformchild"></history-task-form-modal-component>
+            <history-task-form-modal-component :key="key" v-on:refresh="refreshCurrentPageData" ref="historytaskformchild"></history-task-form-modal-component>
         </div>
     </template>
 </div>

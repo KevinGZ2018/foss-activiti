@@ -27,6 +27,7 @@ define([ 'vue', 'html!views/task/historyTaskFormModal.html', 'apis/taskService' 
                 this.getHistoryTaskForm(processInstanceId)
             },
             cancel () {
+                this.$emit('refresh')
                 this.localShowModal = false
             }
         }

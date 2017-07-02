@@ -68,7 +68,7 @@ define([ 'vue', 'html!views/task/listTaskProcess.html', 'globalConst', 'apis/tas
                 currentPage: PAGE.INIT_CURRENT_PAGE,
                 pageSize: PAGE.INIT_PAGE_SIZE,
                 totalCount: 0,
-                id: ''
+                random: ''
             }
         },
         computed: {
@@ -77,8 +77,7 @@ define([ 'vue', 'html!views/task/listTaskProcess.html', 'globalConst', 'apis/tas
              * Vue 为你提供了一种方式来声明“这两个元素是完全独立的——不要复用它们”。
              * 只需添加一个具有唯一值的 key 属性即可(Vue文档原话)*/
             key() {
-                localStorage.setItem('currentUser', this.$route.params.currentUser)
-                return this.$route.params.currentUser
+                return this.$route.params.currentUser + this.random
             }
         },
         watch: {
@@ -95,7 +94,6 @@ define([ 'vue', 'html!views/task/listTaskProcess.html', 'globalConst', 'apis/tas
         },
         methods: {
             startProcess (id) {
-                this.id = id
                 this.$refs.startformchild.show(true, id)
             },
             initListData () {
@@ -115,6 +113,7 @@ define([ 'vue', 'html!views/task/listTaskProcess.html', 'globalConst', 'apis/tas
                 this.getDataPage()
             },
             refreshCurrentPageData () {
+                this.random = new Date()
                 this.getDataPage()
             },
             getDataPage () {

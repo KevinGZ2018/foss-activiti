@@ -52,8 +52,6 @@ define([ 'vue', 'html!views/task/listTaskRunningProcess.html', 'globalConst', 'a
              * Vue 为你提供了一种方式来声明“这两个元素是完全独立的——不要复用它们”。
              * 只需添加一个具有唯一值的 key 属性即可(Vue文档原话)*/
             key() {
-                localStorage.setItem('currentUser', this.$route.params.currentUser);
-                //return this.$route.path !== undefined ? this.$route.path : this.$route
                 return this.$route.params.currentUser
             }
         },

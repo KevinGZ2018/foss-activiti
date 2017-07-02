@@ -7,6 +7,7 @@ define([ 'vue', 'html!views/task/listTodoTask.html', 'globalConst', 'apis/taskSe
         template : html,
         data () {
             return {
+                random: '',
                 columns: [
                     {
                         title: '任务ID',
@@ -126,10 +127,7 @@ define([ 'vue', 'html!views/task/listTodoTask.html', 'globalConst', 'apis/taskSe
              * Vue 为你提供了一种方式来声明“这两个元素是完全独立的——不要复用它们”。
              * 只需添加一个具有唯一值的 key 属性即可(Vue文档原话)*/
             key() {
-                localStorage.setItem('currentUser', this.$route.params.currentUser);
-                localStorage.setItem('currentGroup', this.$route.params.currentGroup);
-                //return this.$route.path !== undefined ? this.$route.path : this.$route
-                return this.$route.params.currentUser
+                return this.$route.params.currentUser + this.random
             }
         },
         watch: {
@@ -187,6 +185,9 @@ define([ 'vue', 'html!views/task/listTodoTask.html', 'globalConst', 'apis/taskSe
                 this.getDataPage()
             },
             refreshCurrentPageData () {
+
+                this.random = new Date()
+
                 this.getDataPage()
             },
             getDataPage () {

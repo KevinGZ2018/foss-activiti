@@ -62,19 +62,22 @@ define([ 'vue', 'html!views/task/taskFormModal.html', 'apis/taskService' ],
                             duration: 5
                         });
 
-                        this.localShowModal = false
                         this.$emit('refresh')
+                        this.localShowModal = false
                     }
                     else {
+                        this.$emit('refresh')
                         this.$Message.error(result.msg)
                     }
 
                 }).catch((error) => {
                     console.log(error)
+                    this.$emit('refresh')
                     this.$Message.error('办理失败!')
                 })
             },
             cancel () {
+                this.$emit('refresh')
                 this.localShowModal = false
             }
         }

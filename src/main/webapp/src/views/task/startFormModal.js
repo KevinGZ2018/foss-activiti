@@ -47,8 +47,6 @@ define([ 'vue', 'html!views/task/startFormModal.html', 'apis/taskService' ],
                     params += key + "=" + value + "&"
                 }
 
-                alert(JSON.stringify(startFormModelContent));
-
                 taskService.startProcessInstance(this.processDefinitionId, params).then((response) => {
 
                     var result = response.data
@@ -59,18 +57,22 @@ define([ 'vue', 'html!views/task/startFormModal.html', 'apis/taskService' ],
                             duration: 5
                         });
 
+                        this.$emit('refresh')
                         this.localShowModal = false
                     }
                     else {
+                        this.$emit('refresh')
                         this.$Message.error(result.msg)
                     }
 
                 }).catch((error) => {
                     console.log(error)
+                    this.$emit('refresh')
                     this.$Message.error('流程启动失败!')
                 })
             },
             cancel () {
+                this.$emit('refresh')
                 this.localShowModal = false
             }
         }
